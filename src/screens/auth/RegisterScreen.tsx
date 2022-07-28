@@ -21,18 +21,34 @@ import { Datepicker } from '@ui-kitten/components';
 import { useAppDispatch } from 'src/hooks/redux.hook';
 import { authActions } from 'src/features/auth/auth.slice';
 
-import { Colors } from 'src/constants';
+import { Colors, DEFAULT_IMAGE } from 'src/constants';
 
 const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const dispatch = useAppDispatch();
 
   const [fullName, setFullName] = React.useState<string>('');
-  const [userName, setUserName] = React.useState<string>('');
+  const [username, setUserName] = React.useState<string>('');
   const [emailAddress, setEmailAddress] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [gender, setGender] = React.useState<string>('');
   const [dateOfBirth, setDateOfBirth] = React.useState<Date>(new Date());
   const [visible, setVisible] = React.useState(false);
+
+  const handleRegister = () => {
+    dispatch(
+      authActions.register({
+        data: {
+          fullName,
+          username,
+          email: emailAddress,
+          dateOfBirth: String(dateOfBirth.getTime()),
+          gender,
+          avatar: DEFAULT_IMAGE,
+        },
+        password,
+      }),
+    );
+  };
 
   return (
     <KeyboardAvoidingView
@@ -94,7 +110,7 @@ const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                 label="Username"
                 style={styles.input}
                 right={<TextInput.Icon name="account" />}
-                value={userName}
+                value={username}
                 onChangeText={setUserName}
                 children={undefined}
                 onPressIn={undefined}
@@ -145,8 +161,7 @@ const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
             <Button
               mode="contained"
               style={styles.button}
-              // onPress={onRegisterButtonPress}
-            >
+              onPress={handleRegister}>
               <Text>Register</Text>
             </Button>
 

@@ -8,6 +8,7 @@ const initialState: IAuthState = {
 
   isPendingLoggedIn: false,
   isPendingGetUser: false,
+  isPendingRegister: false,
 };
 
 const authSlice = createSlice({
@@ -43,6 +44,35 @@ const authSlice = createSlice({
 
     getCurrentUserFailure(state, _action) {
       state.isPendingGetUser = false;
+      state.currentUser = null;
+    },
+
+    updateUser(state, _action: PayloadAction<any>) {
+      state.isPendingGetUser = true;
+    },
+
+    updateUserSuccess(state, action: PayloadAction<any>) {
+      state.isPendingGetUser = false;
+      state.currentUser = action.payload;
+    },
+
+    updateUserFailure(state, _action) {
+      state.isPendingGetUser = false;
+      state.currentUser = null;
+    },
+
+    register(state, _action) {
+      state.isPendingRegister = true;
+    },
+
+    registerSuccess(state, action: PayloadAction<any>) {
+      state.isPendingRegister = false;
+      state.currentUser = action.payload;
+      state.isLoggedIn = true;
+    },
+
+    registerFailure(state, _action) {
+      state.isPendingRegister = false;
       state.currentUser = null;
     },
   },

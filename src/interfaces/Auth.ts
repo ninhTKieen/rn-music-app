@@ -4,6 +4,7 @@ export interface IAuthState {
 
   isPendingLoggedIn: boolean;
   isPendingGetUser: boolean;
+  isPendingRegister: boolean;
 }
 
 export interface IAuthResponse {
@@ -18,11 +19,19 @@ export interface IAuthLoginPayload {
 
 export interface IUser {
   id: string;
-  age: number;
   dateOfBirth: string;
   email: string;
   fullName: string;
   gender: string;
   avatar: any;
-  name: string;
+  username: string;
+}
+
+export interface IUserRegister {
+  dateOfBirth: string;
+  email: string;
+  fullName: string;
+  gender: string;
+  avatar: string;
+  username: string;
 }
