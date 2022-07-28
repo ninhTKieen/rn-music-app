@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { initialWindowMetrics } from 'react-native-safe-area-context';
 
-import { tracks, playlists } from 'src/data';
+import { tracks } from 'src/data';
 
 import { Colors } from 'src/constants';
 import { usePlaylist } from 'src/provider';
@@ -28,10 +28,10 @@ export const Playlist: React.FC<PlaylistProps> = ({ navigation }: any) => {
   useEffect(() => {
     setLists(categories);
     setTracks(
-      sounds.map((item: any, index: any) => ({
+      sounds.map((item: any) => ({
         ...item,
         id: String(item.id),
-        url: tracks[item.id - 1]?.source,
+        url: tracks[Number(item.id) - 1].source,
       })),
     );
   }, [setLists, setTracks, sounds, categories]);

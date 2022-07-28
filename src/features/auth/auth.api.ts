@@ -1,7 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { IUser, IUserRegister } from 'src/interfaces/Auth';
-
 class AuthAPI {
   async login(email: string, password: string) {
     await auth().signInWithEmailAndPassword(email, password);
@@ -17,13 +16,13 @@ class AuthAPI {
 
   async addNewUsersToDatabase(id: string, data: IUserRegister) {
     console.log(id);
-    console.log(data);
+    console.log(data.username);
+    console.log(data.avatar);
     const docRef = firestore().collection('users').doc(id);
     docRef.get().then((doc) => {
       if (doc.exists) {
         console.log('User already exists');
       } else {
-        console.log("User added to database");
         docRef.set({
           dateOfBirth: data.dateOfBirth,
           email: data.email,

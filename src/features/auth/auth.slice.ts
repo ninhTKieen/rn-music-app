@@ -84,5 +84,7 @@ export const selectedIsLoggedIn = (state: any) => state.auth.isLoggedIn;
 export const selectedIsPendingLoggedIn = (state: any) =>
   state.auth.isPendingLoggedIn;
 export const selectedCurrentUser = (state: any) => state.auth.currentUser;
+export const selectedInPendingRegister = (state: any) =>
+  state.auth.isPendingRegister;
 
 export default authSlice.reducer;

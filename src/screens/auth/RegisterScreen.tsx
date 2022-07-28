@@ -8,6 +8,7 @@ import {
   Text,
   ScrollView,
   Platform,
+  Image,
 } from 'react-native';
 import {
   Surface,
@@ -57,6 +58,10 @@ const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <Surface style={styles.innerContainer}>
+            <Image
+              source={require('src/assets/music_app_logo.webp')}
+              style={styles.image}
+            />
             <Title style={styles.title}>Hello</Title>
 
             <Subheading style={{ marginBottom: 10, color: Colors.primary }}>
@@ -181,6 +186,12 @@ const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  image: {
+    height: 200,
+    width: 150,
+    marginBottom: 20,
   },
 
   innerContainer: {

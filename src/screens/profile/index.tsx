@@ -93,6 +93,16 @@ const ProfileScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
               }}
               level="1">
               <View style={styles.itemContainer}>
+                <Text appearance="hint">Email</Text>
+                <Text appearance="hint">{currentUser?.email}</Text>
+              </View>
+
+              <View style={styles.itemContainer}>
+                <Text appearance="hint">Gender</Text>
+                <Text appearance="hint">{currentUser?.gender}</Text>
+              </View>
+
+              <View style={styles.itemContainer}>
                 <Text appearance="hint">Full name</Text>
                 <TextInput
                   value={fullName ? fullName : currentUser?.fullName}
@@ -103,6 +113,7 @@ const ProfileScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                   style={{ color: 'white', padding: 0 }}
                 />
               </View>
+
               <View style={styles.itemContainer}>
                 <Text appearance="hint">Name</Text>
                 <TextInput
