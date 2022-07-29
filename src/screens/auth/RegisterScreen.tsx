@@ -19,13 +19,17 @@ import {
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Datepicker } from '@ui-kitten/components';
-import { useAppDispatch } from 'src/hooks/redux.hook';
-import { authActions } from 'src/features/auth/auth.slice';
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux.hook';
+import {
+  authActions,
+  selectedInPendingRegister,
+} from 'src/features/auth/auth.slice';
 
 import { Colors, DEFAULT_IMAGE } from 'src/constants';
 
 const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const dispatch = useAppDispatch();
+  const isRegister = useAppSelector(selectedInPendingRegister);
 
   const [fullName, setFullName] = React.useState<string>('');
   const [username, setUserName] = React.useState<string>('');
@@ -166,7 +170,8 @@ const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
             <Button
               mode="contained"
               style={styles.button}
-              onPress={handleRegister}>
+              onPress={handleRegister}
+              loading={isRegister}>
               <Text>Register</Text>
             </Button>
 
